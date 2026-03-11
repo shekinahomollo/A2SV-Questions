@@ -1,0 +1,13 @@
+class Solution:
+    def appendCharacters(self, s: str, t: str) -> int:
+        left, right = 0, 0
+        n, m = len(s), len(t)
+
+        while left < n and right < m:
+            if s[left] == t[right]:
+                right += 1
+            left += 1
+
+        ans = m - right # the remaining characters to make it a subsequence
+
+        return ans
