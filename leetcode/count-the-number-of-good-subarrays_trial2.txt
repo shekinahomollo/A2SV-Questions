@@ -1,0 +1,17 @@
+class Solution:
+    def countGood(self, nums: List[int], k: int) -> int:
+        #makes use of prefix sum
+        same = 0
+        r = -1
+        cnt = Counter()
+        res = 0
+        for l in range(len(nums)):
+            while same < k and r < len(nums) - 1:
+                r +=  1
+                same += cnt[nums[r]]
+                cnt[nums[r]] += 1
+            if same >= k:
+                res += len(nums) - r
+            cnt[nums[l]] -= 1
+            same -= cnt[nums[l]]
+        return res
