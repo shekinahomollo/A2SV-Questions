@@ -9,5 +9,4 @@ class Solution:
             if nums[i] != nums[i-1]:
                 up += 1
             count += up
-            
         return count
