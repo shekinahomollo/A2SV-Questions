@@ -1,5 +1,4 @@
-class Solution:
-    def reductionOperations(self, nums: List[int]) -> int:
+def reductionOperations(self, nums: List[int]) -> int:
         n = len(nums)
         count = 0
         up = 0
