@@ -1,0 +1,37 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        '''
+        set the first node (left) to point to null
+        the next node will then point the previous node
+        do that to all the nodes upto the right node
+        set the first node(left) to point to the node on the right of the right node
+        set the last node(right) to be pointed by the node to the left of the left node
+        USE VISUALS TO HELP UNDERSTAND
+        - Use a dummy node to make thing easier due to edge cases. In the case where the head is being reversed
+        - Put the dummy node at the beginning of the linked list
+        '''
+        dummy = ListNode(0, head)
+
+        # 1) Reach node at position "left"
+        leftPrev, curr = dummy, head
+        for i in range(left - 1):
+            leftPrev, curr = curr, curr.next
+
+        # Now curr = "left", leftPrev = "node before left"
+        # 2) reverse from left to right
+
+        prev = None
+        for i in range(right - left + 1):
+            temp = curr.next
+            curr.next = prev
+            prev, curr = curr, temp
+
+        # 3) Connect the reversed portion to the entire linked list
+        leftPrev.next.next = curr
+        leftPrev.next = prev
+        return dummy.next
