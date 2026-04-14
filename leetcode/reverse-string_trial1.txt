@@ -9,4 +9,3 @@ class Solution:
                 s[l], s[r] = s[r], s[l]
 
         reverse(0, len(s) - 1)
-        
